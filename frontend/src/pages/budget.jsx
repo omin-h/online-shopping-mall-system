@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/header";
 import BudgetForm from "../components/budgetForm";
+import Footer from "../components/footer";
 
 
 const Budget = () => {
@@ -8,6 +9,7 @@ const Budget = () => {
         <div>    
             <Header />     
             <BudgetForm />
+            <Footer />
         </div>
     );
 };  

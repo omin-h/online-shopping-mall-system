@@ -1,6 +1,6 @@
 .budget-form-fill{
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     background-color: #f5f5f5;
@@ -109,6 +109,7 @@
 
 .bud-button:hover {
     background-color: #040ab9;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
 }
 
 .small-pop{
