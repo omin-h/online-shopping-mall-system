@@ -1,0 +1,57 @@
+.headerBar{
+    width:100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #01022e;
+    border-radius: 5px;
+
+}
+
+.logo{
+    width: 280px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.nav{
+    flex: 1;
+    list-style: none;
+    text-align: center;
+}
+
+.nav-li{
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer
+}
+
+.nav-li:hover{
+    font-size: 23px;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;  
+    padding: 10px 20px;
+    margin-right: 30px;
+}
+
+.user{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    img{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+}
+
+.linkText{
+    color: #fff;
+    text-decoration: none;
+}
