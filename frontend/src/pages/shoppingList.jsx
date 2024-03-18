@@ -1,21 +1,16 @@
 import React from "react";
 import Header from "../components/header";
-import BudgetForm from "../components/budgetForm";
+import ShoppingListComp from "../components/shoppingListComp";
 import Footer from "../components/footer";
 
-
-const Budget = () => {
+const shoppingList = () => {
     return (
         <div>    
             <Header />     
-            <BudgetForm />
+            <ShoppingListComp />
             <Footer />
         </div>
     );
-};  
+}
 
-export default Budget;
-
-
-
-
+export default shoppingList;
