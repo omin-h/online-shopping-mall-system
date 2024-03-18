@@ -3,8 +3,13 @@ import React from "react";
 const ShoppingListComp = () => {
     return (
         <div>
-            <h1>Shopping List</h1>
-            <p>Shopping List component works!</p>
+            <div className="list-bud">
+                <p className="list-bud-title">
+                    BUDGET: Lkr 20000 - Lkr 25000
+                </p>
+            </div>
+
+            
         </div>
     );
 }
