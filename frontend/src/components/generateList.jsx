@@ -3,7 +3,7 @@ import React from 'react';
 
 async function generateText() {
     const prompt = "Write your prompt here";
-    const apiKey = "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";
+    const apiKey = process.env.REACT_APP_API_KEY;
     const apiUrl = "https://api.openai.com/v1/engines/davinci-codex/completions";
 
     try {
