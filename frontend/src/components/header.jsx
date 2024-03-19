@@ -3,11 +3,14 @@ import './header.css';
 import SearchBar from './searchBar';
 import logo from '../assets/logo.png';
 import user from '../assets/user.png';
+import { Link } from 'react-router-dom'; 
 
 const Header = () => {
     return (
         <div className='headerBar'>
-          <img src={logo} alt="logo" className='logo'/>
+          <Link to="/">
+            <img src={logo} alt="logo" className='logo'/>
+          </Link>
           <ul className='nav'>
             <li className='nav-li'><a href="/" className='linkText'>Home</a></li>
             <li className='nav-li'><a href="/upcoming" className='linkText'>Upcoming Items</a></li>
