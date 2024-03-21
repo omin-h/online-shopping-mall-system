@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Banner from '../assets/banner.jpg';
+import './home.css';
 
 const Home = () => {
 
     return (
         <div>
             <Header />
-            <h2>Welcome to the Online Shopping Mall System</h2>
+            <img src={Banner} alt="Banner Image" className="banner-image" />
+
+            
+
 
             <Footer />
         </div>
