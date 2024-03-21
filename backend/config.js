@@ -1,2 +1,2 @@
 export const PORT = process.env.PORT || 5555;
-export const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/mydatabase";
+export const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://root:123@online-shopping-mall-sy.bmysewi.mongodb.net/?retryWrites=true&w=majority&appName=online-shopping-mall-system";
