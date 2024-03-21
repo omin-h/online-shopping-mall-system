@@ -5,7 +5,7 @@
 }
 .list-item1{
     width: 302px;
-    height: 600px;
+    height: 590px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
@@ -18,50 +18,45 @@
     border: 2px solid #e0e0e0;
 }
 
-.list-item2{
-    width: 302px;
-    height: 600px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-    margin: 20px;
+
+.list-item1-title{
+    font-size: 1.2em;
+    font-weight: 540;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 10px;
+    margin-top: 0px;
 }
 
-.list-item2-img{
-    width: 300px;
-    height: 450px;
-    border: 2px solid #e0e0e0;
+.list-item1-shop{
+    font-size: 1.1em;
+    font-weight: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 10px;
+    margin-top: 10px;
+    white-space: pre;
 }
 
-.list-item3{
-    width: 302px;
-    height: 600px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-    margin: 20px;
+
+.list-item1-detail{
+    display: flex;
+    position: relative;
 }
 
-.list-item3-img{
-    width: 300px;
-    height: 450px;
-    border: 2px solid #e0e0e0;
+.cart-logo2{
+    margin-left: 250px;
+    margin-top: 75px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+
+   
 }
 
-.list-item4{
-    width: 302px;
-    height: 600px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-    margin: 20px;
+.list-end{
+    white-space: pre;
 }
 
-.list-item4-img{
-    width: 300px;
-    height: 450px;
-    border: 2px solid #e0e0e0;
-}
+
 
 .cart-logo{
     margin-left: 10px;
@@ -77,6 +72,7 @@
 
 .list-button {
     margin-bottom: 20px;
+    
     padding: 10px 20px;
     font-size: 1.2em;
     font-weight: 500;
@@ -96,22 +92,14 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
 }
 
-.list-item1-title{
-    font-size: 1.2em;
-    font-weight: 500;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-left: 10px;
-    margin-top: 10px;
+.list-bud{
+    margin-left: 1200px;
 }
 
-.list-item1-price{
-    font-size: 1.1em;
-    font-weight: 500;
+.list-bud-title{
+    font-size: 1.3em;
+    font-weight: 540;
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-left: 10px;
-    margin-top: 10px;
-}
-
-.list-end{
-    display: flex;
+    margin-top: 0px;
 }

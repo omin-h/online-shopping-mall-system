@@ -3,6 +3,7 @@ import './header.css';
 import SearchBar from './searchBar';
 import logo from '../assets/logo.png';
 import user from '../assets/user.png';
+import Cart from '../assets/cart.png';
 import { Link } from 'react-router-dom'; 
 
 const Header = () => {
@@ -25,6 +26,7 @@ const Header = () => {
             <img src={user} alt="user" className='userIcon'/>
             <a href="/login" className='linkText'>Login</a>
           </div>
+          <img src={Cart} alt="Button Image" className="cart-logoo"></img>
 
 
         </div>
