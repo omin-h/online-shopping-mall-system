@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: space-between;
     background: #01022e;
-    border-radius: 5px;
 
 }
 
@@ -19,6 +18,7 @@
     flex: 1;
     list-style: none;
     text-align: center;
+    display: flex;
 }
 
 .nav-li{
@@ -45,8 +45,8 @@
     display: flex;
     align-items: center;
     img{
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         margin-right: 10px;
     }
 }
@@ -54,4 +54,17 @@
 .linkText{
     color: #fff;
     text-decoration: none;
+}
+
+.cart-logoo{
+    margin-left: 10px;
+    margin-right: 30px;
+    width: 25px;
+    height: 25px;
+}
+
+.cart-logoo:hover{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
 }

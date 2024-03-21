@@ -7,7 +7,7 @@ import CustomerSupport from "./pages/customer_support";
 
 import Budget from "./pages/budget";
 import ShoppingList from "./pages/shoppingList";
-import LastShoppingList from "./pages/lastShoppingList";
+
 
 const App = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
       {/* omin's routes */}
       <Route path="/budget" element={<Budget />} />
       <Route path="/shoppingList" element={<ShoppingList />} />
-      <Route path="/lastShoppingList" element={<LastShoppingList />} />
+  
       
     </Routes>
 

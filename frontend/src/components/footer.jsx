@@ -7,7 +7,7 @@ const Footer = () => {
         <footer>
             <div className='footer-fill'>
                 <a href='https://github.com/omin-h/online-shopping-mall-system'><img src= {GitHubLogo} alt='github' className='footer-icon' /></a>
-                <p className='footer-text'>© 2024 Galaxy City Online Shopping Mall System<br />All rights reserved.<br />Developed with ❤️</p>
+                <p className='footer-text'>© 2024 Galaxy City Online Shopping Mall<br />All rights reserved<br />Developed with ❤️</p>
 
             </div>
         </footer>
