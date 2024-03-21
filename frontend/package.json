@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.4",
     "antd": "^5.15.3",
+    "antd-img-crop": "^4.21.0",
     "axios": "^1.6.8",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "openai": "^4.29.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

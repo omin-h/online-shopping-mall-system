@@ -3,7 +3,8 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 
-import CustomerSupport from "./pages/customer_support";
+import CustomerSupport from "./pages/customerSupport";
+import CustomerSupAdmin from "./pages/customerSupAdmin";
 
 import Budget from "./pages/budget";
 import ShoppingList from "./pages/shoppingList";
@@ -18,9 +19,10 @@ const App = () => {
 
       <Route path="/" element={<Home />} />
 
-      
+
       {/* dunal's routes */}
-      <Route path="/customer_support" element={<CustomerSupport />} />
+      <Route path="/customer_Support" element={<CustomerSupport />} />
+      <Route path="/customer_Support_Admin" element={<CustomerSupAdmin />} />
 
 
       {/* omin's routes */}
