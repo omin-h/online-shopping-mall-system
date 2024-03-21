@@ -64,15 +64,14 @@
     height: 20px;
 }
 
-.list-button-fill{
+.list-but-fill{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.list-button {
-    margin-bottom: 20px;
-    
+.list-but {
+    margin-bottom: 20px;    
     padding: 10px 20px;
     font-size: 1.2em;
     font-weight: 500;
@@ -87,7 +86,7 @@
     margin-left: 1170px;
 }
 
-.list-button:hover {
+.list-but:hover {
     background-color: #040ab9;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
 }

@@ -122,7 +122,7 @@ const ShoppingListComp = () => {
                     </p>
                 </div>
 
-                <div className="list-button-fill"><button type="submit" className="list-button">Add to Cart<img src={Cart} alt="Button Image" className="cart-logo"></img></button></div>
+                <div className="list-but-fill"><button type="submit" className="list-but">Add to Cart<img src={Cart} alt="Button Image" className="cart-logo"></img></button></div>
             </div>
 
         </div>
