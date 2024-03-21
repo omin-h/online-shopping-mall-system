@@ -14,7 +14,8 @@ const Home = () => {
             <div className="AI-banner">
                 <p className="AI-banner-text">Make your shopping list with AI</p>
                 <img src= {aiIcon} alt="AI Icon" className="AI-banner-icon"/>
-                <button type="submit" className="AI-but">Try now</button>
+                <a href="/budget" class="AI-but">Try now</a>
+
 
 
             </div>

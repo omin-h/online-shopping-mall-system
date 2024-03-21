@@ -17,7 +17,6 @@ const Header = () => {
             <li className='nav-li'><a href="/upcoming" className='linkText'>Upcoming Items</a></li>
             <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
             <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
-            <li className='nav-li'><a href="/contact Us" className='linkText'>Contact Us</a></li>
           </ul>
           <div className='searchBar'>
             <SearchBar />         
