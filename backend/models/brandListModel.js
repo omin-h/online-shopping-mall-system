@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const brandListSchema = new mongoose.Schema({
-    name: {
+    brandName: {
         type: String,
         required: true
     },
@@ -17,4 +17,4 @@ const brandListSchema = new mongoose.Schema({
 
 const brandList = mongoose.model('brandList', brandListSchema);
 
-module.exports = brandList;
+export { brandList };

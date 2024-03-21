@@ -1,8 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { getAllbrandlist, getbrandlistById, addbrandList } from '../controllers/brandListController.js';
+
 const router = express.Router();
-const brandListController = require('../controllers/brandListController');
 
-router.get('/', brandListController.getAllbrandlist);
-router.get('/:id', brandListController.getbrandlistById);
+router.get('/brandList', getAllbrandlist);
+router.get('/brandList/:id', getbrandlistById);
+router.post('/brand', addbrandList);
 
-module.exports = router;
+export default router;
