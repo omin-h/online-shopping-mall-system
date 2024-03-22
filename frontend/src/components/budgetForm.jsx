@@ -3,8 +3,6 @@ import "./budgetForm.css";
 import ai from '../assets/AI Logo.png';
 import { useNavigate } from "react-router-dom";
 
-
-
 const BudgetForm = () => {
 
     const [minBudget, setMinBudget] = useState('');
