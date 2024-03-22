@@ -24,7 +24,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             Emerald Store< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -50,7 +50,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             fashion bug< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -76,7 +76,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             Nolimit< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -102,7 +102,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             RASPBERRY< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -118,7 +118,7 @@ const ShoppingListComp = () => {
             <div className="list-end">
                 <div className="list-bud">
                     <p className="list-bud-title">
-                        Total cost: Lkr 23000
+                        Total cost: Rs 23000
                     </p>
                 </div>
 
