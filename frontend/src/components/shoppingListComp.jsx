@@ -3,8 +3,8 @@ import Tshirt from '../assets/polo-shirt.webp';
 import Trouser from '../assets/trouser.jpg';
 import Bottle from '../assets/bottle.jpg';
 import Bag from '../assets/bag.jpg';
-import Cart from '../assets/cart.png';
 import Cart2 from '../assets/cart2.png';
+import Again from '../assets/again.png';
 import './shoppingListComp.css';
 
 const ShoppingListComp = () => {
@@ -122,7 +122,7 @@ const ShoppingListComp = () => {
                     </p>
                 </div>
 
-                <div className="list-but-fill"><button type="submit" className="list-but">Add to Cart<img src={Cart} alt="Button Image" className="cart-logo"></img></button></div>
+                <div className="list-but-fill"><button type="submit" className="list-but">Try Again<img src={Again} alt="Button Image" className="cart-logo"></img></button></div>
             </div>
 
         </div>
