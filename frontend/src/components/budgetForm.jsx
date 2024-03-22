@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./budgetForm.css";
 import ai from '../assets/AI Logo.png';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const BudgetForm = () => {
 
@@ -26,19 +27,37 @@ const BudgetForm = () => {
         event.preventDefault(); // Prevent default form submission behavior
 
         if (minBudget === '' || maxBudget === '' || items === '') {
-            alert('All fields are required');
+            Swal.fire({
+                icon: "warning",
+                text: "All fields are required",
+              });
+            return;
+        }
+
+        if(+minBudget > +maxBudget){
+            Swal.fire({
+                icon: "warning",
+                text: "Minimum budget should be less than Maximum budget",
+              });
             return;
         }
 
         // Validate budget range
         if (minBudget < 2000 || maxBudget > 500000) {
-            alert('Budget should be between Lkr 2000 and Lkr 500000');
+            Swal.fire({
+                icon: "warning",
+                text: "Budget should be between Rs.2000 and Rs.500000",
+              });
+            
             return;
         }
 
         // Validate items length
         if (itemsCount > 500) {
-            alert('Items should not exceed 500 characters');
+            Swal.fire({
+                icon: "warning",
+                text: "Items should not exceed 500 characters",
+              });
             return;
         }
 
@@ -54,7 +73,7 @@ const BudgetForm = () => {
 
             <div className="budget-form">
                 <form onSubmit={handleFormSubmit}>
-                    <label className="bud-label">Budget</label>
+                    <label className="bud-label">Budget(Rs)</label>
                     <input
                         type="number"
                         name="minBudget"
