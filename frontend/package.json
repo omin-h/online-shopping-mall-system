@@ -10,15 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@ant-design/icons": "^5.3.4",
-=======
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.11.16",
-    "@mui/x-date-pickers": "^6.0.4",
->>>>>>> 27eeee937c423f3c6b64803fea2adc782d833749
     "antd": "^5.15.3",
     "antd-img-crop": "^4.21.0",
     "axios": "^1.6.8",
