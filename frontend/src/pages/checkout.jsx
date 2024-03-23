@@ -9,12 +9,14 @@ import axios from 'axios';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { message } from 'antd';
+import { usePaymentInputs } from 'react-payment-inputs';
 
 function Checkout() {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
+    const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
     useEffect(() => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -105,14 +107,14 @@ function Checkout() {
                                     inputProps={{ style: { backgroundColor: 'white', borderRadius: '4px' } }}
                                     className="my-3" label="Name on card" size="small" variant="outlined" fullWidth required />
                                 <TextField
-                                    inputProps={{ style: { backgroundColor: 'white', borderRadius: '4px' } }}
+                                    inputProps={{ ...getCardNumberProps(), style: { backgroundColor: 'white', borderRadius: '4px' } }}
                                     className="my-3" label="Card number" size="small" variant="outlined" fullWidth required />
                                 <div className="row my-3">
                                     <div className="col-xl-4">
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DateField
                                                 label="MM / YY"
-                                                inputProps={{ style: { backgroundColor: 'white', borderRadius: '4px' } }}
+                                                inputProps={{ ...getExpiryDateProps, style: { backgroundColor: 'white', borderRadius: '4px' } }}
                                                 // value={value}
                                                 // onChange={(newValue) => setValue(newValue)}
                                                 format='MM/YY' required
@@ -121,11 +123,12 @@ function Checkout() {
                                     </div>
                                     <div className="col-xl-4">
                                         <TextField
-                                            inputProps={{ style: { backgroundColor: 'white', borderRadius: '4px' } }}
+                                            inputProps={{ ...getCVCProps(), style: { backgroundColor: 'white', borderRadius: '4px' } }}
                                             label="CVV" size="large" variant="outlined" required
                                         />
                                     </div>
                                 </div>
+                                <strong style={{ color: 'red' }}>{meta.isTouched && meta.error && 'Error: ' + meta.error} &nbsp;</strong>
                                 <TextField
                                     inputProps={{ style: { backgroundColor: 'white', borderRadius: '4px' } }}
                                     className="my-3" label="Email address" size="small" variant="outlined" fullWidth
