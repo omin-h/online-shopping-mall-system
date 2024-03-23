@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Layout, Breadcrumb, Input, Row, Col, Card, Space, Anchor } from 'antd';
+import { Layout, Breadcrumb, Input, Row, Col, Card, Space, Button, AutoComplete } from 'antd';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
 import TicketForm from '../components/customerSupport/ticketForm';
 
+import { SearchOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
-const { Search } = Input;
-const { Link } = Anchor;
 
 const CustomerPage = () => {
   const [tickets, setTickets] = useState([]);
@@ -32,101 +31,91 @@ const CustomerPage = () => {
   ];
 
   const handleSearch = value => {
-    // Handle search functionality here
     console.log('Searching for:', value);
   };
 
   const handleIconClick = topic => {
-    // Handle icon click here
     console.log('Clicked on:', topic);
   };
 
+  const handleReportIssue = () => {
+    const ticketFormElement = document.getElementById('ticket-form');
+    ticketFormElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+  };
+
+  const options = frequentlyAskedQuestions.map((faq, index) => ({
+    value: faq,
+  }));
+
   return (
-    <div>
+    <div
+      style={{
+        textAlign: 'center',
+        backgroundImage: 'url("https://c4.wallpaperflare.com/wallpaper/870/756/865/4k-dark-blue-lines-grid-lines-wallpaper-preview.jpg")', // Replace the URL with the path to your image
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <Header />
-    <Content style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>Support</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="site-layout-content">
-        <Row gutter={[16, 16]}>
-          <Col span={12}>
-            <div className="search-bar">
-              <Search
-                placeholder="Search frequently asked questions"
-                onSearch={handleSearch}
-                enterButton
-              />
-              <div className="faq-list">
-                {frequentlyAskedQuestions.map((faq, index) => (
-                  <p key={index}>{faq}</p>
-                ))}
+      <Content style={{ padding: '0 50px', maxWidth: '800px', margin: '0 auto' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>Support</Breadcrumb.Item>
+        </Breadcrumb>
+        <div className="site-layout-content">
+          <Row gutter={[16, 16]} justify="center">
+            <Col span={24}>
+              <div className="search-bar">
+                <AutoComplete
+                  style={{ width: '100%' }} // Make the search bar longer
+                  dropdownClassName="faq-dropdown"
+                  options={options}
+                  onSelect={handleSearch}
+                >
+                  <Input.Search
+                    placeholder="Search frequently asked questions"
+                    onSearch={handleSearch}
+                    enterButton={<Button type="primary">Search</Button>}
+                  />
+                </AutoComplete>
+                <Button type="primary" onClick={handleReportIssue} style={{ marginTop: '20px' }}>Report an Issue</Button>
               </div>
-            </div>
-          </Col>
-          <Col span={12}>
-            <div className="icon-array">
-              <Space size={24}>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="User Login" src="/path/to/user-login-icon.png" />}
-                  onClick={() => handleIconClick('User Login')}
-                >
-                  User Login
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="My Account" src="/path/to/my-account-icon.png" />}
-                  onClick={() => handleIconClick('My Account')}
-                >
-                  My Account
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="Security" src="/path/to/security-icon.png" />}
-                  onClick={() => handleIconClick('Security')}
-                >
-                  Security
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="E-commerce" src="/path/to/e-commerce-icon.png" />}
-                  onClick={() => handleIconClick('E-commerce')}
-                >
-                  E-commerce
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="Communication" src="/path/to/communication-icon.png" />}
-                  onClick={() => handleIconClick('Communication')}
-                >
-                  Communication
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width: 120 }}
-                  cover={<img alt="Customization" src="/path/to/customization-icon.png" />}
-                  onClick={() => handleIconClick('Customization')}
-                >
-                  Customization
-                </Card>
-              </Space>
-            </div>
-          </Col>
-        </Row>
-        <div className="ticket-form">
-          <TicketForm onFinish={onFinish} />
+            </Col>
+            <Col span={24} style={{ marginTop: '40px' }}>
+              <div className="icon-array">
+                <Space size={24}>
+                  {[
+                    { title: 'User Login', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-gear-289-667857.png?f=webp' },
+                    { title: 'My Account', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028919.png' },
+                    { title: 'Security', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028910.png' },
+                    { title: 'E-commerce', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028923.png' },
+                    { title: 'Communication', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028914.png' },
+                    { title: 'Customization', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028932.png' }
+                  ].map((item, index) => (
+                    <Card
+                      key={index}
+                      hoverable
+                      style={{ width: 120 }}
+                      cover={<img alt={item.title} src={item.icon} />}
+                      onClick={() => handleIconClick(item.title)}
+                    >
+                      {item.title}
+                    </Card>
+                  ))}
+                </Space>
+              </div>
+            </Col>
+          </Row>
+          <Row justify="center" style={{ marginTop: '40px' }}>
+            <Col span={16}>
+              <div className="ticket-form" style={{ padding: '20px', borderRadius: '8px' }}> 
+                <TicketForm onFinish={onFinish} />
+              </div>
+            </Col>
+          </Row>
         </div>
-       
-      </div>
-    </Content>
-        <Footer />
+      </Content>
+      <Footer />
     </div>
   );
 };
