@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.16",
+    "@mui/x-date-pickers": "^6.0.4",
     "antd": "^5.15.3",
     "axios": "^1.6.8",
     "openai": "^4.29.1",
