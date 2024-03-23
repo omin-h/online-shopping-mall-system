@@ -42,6 +42,10 @@ const Shop = () => {
         <div>
             <Header />
             <div className="shop-items" >
+                <p className="page-title mb-5">
+                    <img src="https://scontent.fcmb2-2.fna.fbcdn.net/v/t39.30808-1/361216809_756095749853932_1995425212671243771_n.jpg?stp=dst-jpg_p200x200&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=2DfWP-WfdmkAX9oqBcB&_nc_ht=scontent.fcmb2-2.fna&oh=00_AfB7ypGCRiRug_Cr5RdkXNLFEzMYnZXGu6iI6-celjPxEQ&oe=66022422" height={100} />
+                    <span style={{paddingLeft:20}}>Carnage</span>
+                </p>
                 {items.map(item => <div className="item" key={item.id}>
                     <img src={item.image} />
                     <div className="item-info">

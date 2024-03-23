@@ -1,10 +1,10 @@
 import React from 'react';
-import './header.css';
-import SearchBar from './searchBar';
+import { Link } from 'react-router-dom';
+import Cart from '../assets/cart.png';
 import logo from '../assets/logo.png';
 import user from '../assets/user.png';
-import Cart from '../assets/cart.png';
-import { Link } from 'react-router-dom';
+import './header.css';
+import SearchBar from './searchBar';
 
 const Header = () => {
   return (
@@ -18,7 +18,6 @@ const Header = () => {
         <li className='nav-li'><a href="/upcoming" className='linkText'>Upcoming Items</a></li>
         <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
         <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
-        <li className='nav-li'><a href="/contact Us" className='linkText'>Contact Us</a></li>
       </ul>
       <div className='searchBar'>
         <SearchBar />
@@ -30,8 +29,6 @@ const Header = () => {
       <a href="/cart">
         <img src={Cart} alt="Button Image" className="cart-logoo"></img>
       </a>
-
-
     </div>
 
   );

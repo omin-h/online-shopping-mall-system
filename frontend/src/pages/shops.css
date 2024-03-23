@@ -5,6 +5,7 @@
     margin-bottom: 30px;
     background: linear-gradient(#01022e, #ffffff);
     display: flex;
+    flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
 }
 

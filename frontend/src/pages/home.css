@@ -10,14 +10,17 @@
     height: 70px;
     display: flex;
     align-items: center; 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.4);
     margin-bottom: 30px;
 }
 
 .AI-banner-text{
-    color: #ffffff;
-    font-size: 30px;
+    color: #cecece;
+    font-size: 25px;
     margin-left: 850px;
+    font-family: Arial;
+    font-weight: none;
+
 }
 
 .AI-banner-icon{
@@ -31,7 +34,7 @@
     margin-left: 50px;   
     padding: 10px 20px;
     font-size: 1.2em;
-    font-weight: 500;
+    font-weight: 300;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #000000;
     background-color: #ffffff;
@@ -39,4 +42,11 @@
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+}
+
+.AI-but:hover{
+    background-color: #01022e;
+    color: #ffffff;
+    transition: background-color 0.5s;
 }

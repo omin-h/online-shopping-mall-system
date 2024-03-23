@@ -3,8 +3,8 @@ import Tshirt from '../assets/polo-shirt.webp';
 import Trouser from '../assets/trouser.jpg';
 import Bottle from '../assets/bottle.jpg';
 import Bag from '../assets/bag.jpg';
-import Cart from '../assets/cart.png';
 import Cart2 from '../assets/cart2.png';
+import Again from '../assets/again.png';
 import './shoppingListComp.css';
 
 const ShoppingListComp = () => {
@@ -24,7 +24,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             Emerald Store< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -50,7 +50,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             fashion bug< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -76,7 +76,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             Nolimit< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -102,7 +102,7 @@ const ShoppingListComp = () => {
 
                             <p className="list-item1-shop">
                             RASPBERRY< br />
-                            Lkr 5000
+                            Rs 5000
                             </p>
                             
                         </p>
@@ -118,11 +118,11 @@ const ShoppingListComp = () => {
             <div className="list-end">
                 <div className="list-bud">
                     <p className="list-bud-title">
-                        Total cost: Lkr 23000
+                        Total cost: Rs 23000
                     </p>
                 </div>
 
-                <div className="list-but-fill"><button type="submit" className="list-but">Add to Cart<img src={Cart} alt="Button Image" className="cart-logo"></img></button></div>
+                <div className="list-but-fill"><button type="submit" className="list-but">Try Again<img src={Again} alt="Button Image" className="cart-logo"></img></button></div>
             </div>
 
         </div>

@@ -58,7 +58,7 @@ function Checkout() {
     return (
         <div>
             <Header />
-            <div className="checkout-container mt-5">
+            <div className="checkout-container">
                 <p className="page-title mb-5">Checkout</p>
                 <div className="checkout-card">
                     <div className="row">
