@@ -7,6 +7,7 @@ import CustomerSupport from "./pages/customer_support";
 
 import Budget from "./pages/budget";
 import ShoppingList from "./pages/shoppingList";
+import Generate from "./pages/generate";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
 
       {/* omin's routes */}
       <Route path="/budget" element={<Budget />} />
+      <Route path="/generate" element={<Generate />} />
       <Route path="/shoppingList" element={<ShoppingList />} />
   
       
