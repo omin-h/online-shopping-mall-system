@@ -14,7 +14,7 @@ const BudgetForm = () => {
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleClick = (minBudget, maxBudget, items) => {
-        navigate("/shoppingList", { state: { minBudget, maxBudget, items } }); // Pass values as props when navigating
+        navigate("/generate", { state: { minBudget, maxBudget, items } }); // Pass values as props when navigating
     };
 
     const handleItemsChange = (event) => {
