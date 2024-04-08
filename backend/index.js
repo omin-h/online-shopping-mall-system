@@ -1,17 +1,20 @@
-import express from "express";
-import { PORT, MONGO_URI } from "./config.js";
-import mongoose from "mongoose";
+import express from 'express';
+import cors from 'cors';
+import { PORT, connectToDatabase } from './config.js';
 
 
-const app = new express();
+const app = express();
 
-mongoose.connect(MONGO_URI) 
-    .then(() => {
-        console.log("Connected to MongoDB");
-        app.listen(PORT, () => {
-        console.log(`Server listening on port ${PORT}`);
-        });
-    })
-    .catch((err) => {
-        console.log(err)
-        });
+app.use(cors());
+app.use(express.json());
+
+// Connect to the database
+connectToDatabase();
+
+// Routes
+
+
+// Start the server
+const server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
