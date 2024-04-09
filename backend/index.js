@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { PORT, connectToDatabase } from './config.js';
+import shopProductRoute from './routes/shopProductRoute.js';
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 connectToDatabase();
 
 // Routes
+app.use('/shopProduct', shopProductRoute);
 
 
 // Start the server

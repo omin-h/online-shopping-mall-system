@@ -1,4 +1,5 @@
-const ShopProduct = require('../model  s/shopProduct');
+import ShopProduct from '../models/shopProduct.js';
+
 
 const createShopProduct = async (req, res) => {
     try {
@@ -21,6 +22,7 @@ const createShopProduct = async (req, res) => {
     }
 };
 
-module.exports = {
+
+export default {
     createShopProduct
 };
