@@ -1,13 +1,16 @@
+// TicketList.jsx
+
 import React from 'react';
 import { Table } from 'antd';
 
-const TicketList = ({ tickets }) => {
+const TicketList = ({ tickets, onTicketSelect }) => {
   const columns = [
     {
       title: 'Issue',
       dataIndex: 'issue',
       key: 'issue',
       width: '70%',
+      render: (text, record) => <a onClick={() => onTicketSelect(record)}>{text}</a>,
     },
     {
       title: 'Status',

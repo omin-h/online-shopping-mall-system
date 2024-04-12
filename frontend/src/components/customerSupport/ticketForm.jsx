@@ -18,17 +18,17 @@ const TicketForm = () => {
       });
 
       if (response.ok) {
-        console.log('Ticket submitted successfully');
+        console.log('Issue submitted successfully');
         form.resetFields();
         notification.success({
           message: 'Success',
-          description: 'Ticket submitted successfully',
+          description: 'Issue submitted successfully',
         });
       } else {
-        console.error('Failed to submit ticket');
+        console.error('Failed to submit issue');
         notification.error({
           message: 'Error',
-          description: 'Failed to submit ticket',
+          description: 'Failed to submit issue',
         });
       }
     } catch (error) {

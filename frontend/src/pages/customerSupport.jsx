@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Layout, Breadcrumb, Input, Row, Col, Card, Space, Button, AutoComplete } from 'antd';
+import { Layout, Breadcrumb, Input, Row, Col, Card, Space, Button, AutoComplete, Popover } from 'antd';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
 import TicketForm from '../components/customerSupport/ticketForm';
 
 import { SearchOutlined } from '@ant-design/icons';
+
 
 const { Content } = Layout;
 
@@ -92,15 +93,14 @@ const CustomerPage = () => {
                     { title: 'Communication', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028914.png' },
                     { title: 'Customization', icon: 'https://cdn-icons-png.flaticon.com/128/1028/1028932.png' }
                   ].map((item, index) => (
-                    <Card
-                      key={index}
-                      hoverable
-                      style={{ width: 120 }}
-                      cover={<img alt={item.title} src={item.icon} />}
-                      onClick={() => handleIconClick(item.title)}
-                    >
-                      {item.title}
-                    </Card>
+                    <Popover key={index} content={item.title} title={null} trigger="hover">
+                      <Card
+                        hoverable
+                        style={{ width: 120 }}
+                        cover={<img alt={item.title} src={item.icon} />}
+                        onClick={() => handleIconClick(item.title)}
+                      />
+                    </Popover>
                   ))}
                 </Space>
               </div>
@@ -108,8 +108,9 @@ const CustomerPage = () => {
           </Row>
           <Row justify="center" style={{ marginTop: '40px' }}>
             <Col span={16}>
-              <div className="ticket-form" style={{ padding: '20px', borderRadius: '8px' }}> 
+              <div className="ticket-form" style={{ padding: '20px', borderRadius: '8px' }}>
                 <TicketForm onFinish={onFinish} />
+
               </div>
             </Col>
           </Row>

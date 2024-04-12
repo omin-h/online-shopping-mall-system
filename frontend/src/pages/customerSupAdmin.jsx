@@ -1,23 +1,24 @@
+// AdminPage.jsx
+
 import React, { useState, useEffect } from 'react';
-import { Layout, Breadcrumb, List, Modal, Button } from 'antd';
+import { Layout, Breadcrumb, Modal, Button } from 'antd';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import TicketForm from '../components/customerSupport/ticketForm';
+import TicketFormWithReply from '../components/customerSupport/TicketFormWithReply';
+import TicketList from '../components/customerSupport/ticketList';
 
 const { Content } = Layout;
 
 const AdminPage = () => {
   const [tickets, setTickets] = useState([]);
-  const [resolvedTickets, setResolvedTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [replyModalVisible, setReplyModalVisible] = useState(false);
 
   useEffect(() => {
-    // Fetch ticket data from the backend when the component mounts
     const fetchTickets = async () => {
       try {
-        const response = await fetch('http://localhost:5555/ticket'); // Use fetch to fetch data
+        const response = await fetch('http://localhost:5555/ticket');
         if (response.ok) {
           const data = await response.json();
           setTickets(data);
@@ -30,7 +31,7 @@ const AdminPage = () => {
     };
 
     fetchTickets();
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []);
 
   const handleTicketSelect = ticket => {
     setSelectedTicket(ticket);
@@ -38,22 +39,11 @@ const AdminPage = () => {
   };
 
   const handleReply = (ticketKey, reply) => {
-    // Logic to update ticket status or reply to the ticket
-    // Example: setTicketStatus(ticketKey, 'Resolved');
     setReplyModalVisible(false);
   };
 
-  const handlePrint = (ticketType) => {
-    const ticketsToPrint = ticketType === 'resolved' ? resolvedTickets : tickets;
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write('<html><head><title>Customer Support Tickets</title></head><body>');
-    printWindow.document.write('<h1>Customer Support Tickets</h1>');
-    ticketsToPrint.forEach(ticket => {
-      printWindow.document.write(`<p>${ticket.issue} - Status: ${ticket.status}</p>`);
-    });
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
+  const handlePrint = ticketType => {
+    // Your printing logic here
   };
 
   return (
@@ -66,48 +56,21 @@ const AdminPage = () => {
         </Breadcrumb>
         <div className="site-layout-content">
           <h2>Customer Support - Issues</h2>
-          <h3>Pending Issues</h3>
-          <List
-            itemLayout="horizontal"
-            dataSource={tickets.filter(ticket => ticket.status === 'Pending')}
-            renderItem={ticket => (
-              <List.Item
-                onClick={() => handleTicketSelect(ticket)} // Make each item clickable
-                style={{ cursor: 'pointer' }} // Change cursor to pointer when hovering
-              >
-                <List.Item.Meta
-                  title={ticket.issue}
-                  description={`Status: ${ticket.status}`}
-                />
-              </List.Item>
-            )}
-          />
-          <h3>Resolved Issues</h3>
-          <List
-            itemLayout="horizontal"
-            dataSource={tickets.filter(ticket => ticket.status === 'Resolved')}
-            renderItem={ticket => (
-              <List.Item>
-                <List.Item.Meta
-                  title={ticket.issue}
-                  description={`Status: ${ticket.status}`}
-                />
-              </List.Item>
-            )}
-          />
+          <h3>All Issues</h3>
+          <TicketList tickets={tickets} onTicketSelect={handleTicketSelect} />
           <Modal
             title="Reply to Ticket"
             visible={replyModalVisible}
             onCancel={() => setReplyModalVisible(false)}
             footer={[
               <Button key="resolvedPrint" onClick={() => handlePrint('resolved')}>Print Resolved</Button>,
-              <Button key="pendingPrint" onClick={() => handlePrint('pending')}>Print Pending</Button>,
-              <Button key="submit" type="primary" onClick={() => handleReply(selectedTicket.key, "Your reply here")}>
-                Submit
+              
+              <Button key="delete" type="primary" onClick={() => handleReply(selectedTicket.key, "Your reply here")}>
+                Delete
               </Button>,
             ]}
           >
-            <TicketForm onFinish={values => console.log("Form submitted with values:", values)} />
+            <TicketFormWithReply onFinish={values => console.log("Form submitted with values:", values)} />
           </Modal>
         </div>
       </Content>

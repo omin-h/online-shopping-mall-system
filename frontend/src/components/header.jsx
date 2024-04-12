@@ -24,7 +24,7 @@ const Header = () => {
           </div>
           <div className='user'>
             <img src={user} alt="user" className='userIcon'/>
-            <a href="/login" className='linkText'>Login</a>
+            <a href="/customer_Support_Admin" className='linkText'>Login</a>
           </div>
           <img src={Cart} alt="Button Image" className="cart-logoo"></img>
         </div>
