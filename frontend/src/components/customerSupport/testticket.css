@@ -1,0 +1,60 @@
+#afhkticket-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .afhkform {
+    width: 100%;
+  }
+  
+  .afhkcard {
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  
+  .afhktitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .afhkform-group {
+    margin-bottom: 20px;
+  }
+  
+  .afhklabel {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .afhkinput,
+  .afhktextarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .afhktextarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .afhksubmit-button {
+    background-color: #1890ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .afhksubmit-button:hover {
+    background-color: #40a9ff;
+  }
+  

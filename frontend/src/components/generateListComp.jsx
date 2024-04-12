@@ -1,8 +1,9 @@
 const axios = require('axios');
 import React from 'react';
+import Loading from '../assets/loading.gif'; 
 
-async function generateText() {
-    const prompt = "Write your prompt here";
+async function generateText(minBudget, maxBudget, items) {
+    const prompt = `Minimum Budget: ${minBudget}, Maximum Budget: ${maxBudget}, Items: ${items}, Generate a list of items in database within the given budget.`;
     const apiKey = process.env.OPENAI_API_KEY;
     const apiUrl = "https://api.openai.com/v1/engines/davinci-codex/completions";
 
