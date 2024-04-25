@@ -26,8 +26,8 @@ import './shops.css';
 
 const Shops = () => {
     return (
-        <div className="shops-fill">
-                    <div className="shop1"><img src={Adi} className="shop-logo1" alt="shop-logo"></img></div>
+        <div id="shops-section" className="shops-fill">
+                    <a className="shop1" href="/shop/adi"><img src={Adi} className="shop-logo1" alt="shop-logo"></img></a>
                     <div className="shop1"><img src={Aba} className="shop-logo1" alt="shop-logo"></img></div>
                     <div className="shop1"><img src={Bab} className="shop-logo1" alt="shop-logo"></img></div>
                     <div className="shop1"><img src={Calv} className="shop-logo1" alt="shop-logo"></img></div>

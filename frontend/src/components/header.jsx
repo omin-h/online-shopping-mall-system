@@ -14,7 +14,7 @@ const Header = () => {
       </Link>
       <ul className='nav'>
         <li className='nav-li'><a href="/" className='linkText'>Home</a></li>
-        <li className='nav-li'><a href="/shops" className='linkText'>Shops</a></li>
+        <li className='nav-li'><a onClick={()=>document.getElementById('shops-section').scrollIntoView({ behavior: "smooth" })} className='linkText'>Shops</a></li>
         <li className='nav-li'><a href="/upcoming" className='linkText'>Upcoming Items</a></li>
         <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
         <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
