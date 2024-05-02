@@ -14,8 +14,6 @@ router.route('/add').post((req, res) => {
     const title = req.body.title;
     const price = Number(req.body.price);
     const image = req.body.image;
-    const brand = req.body.brand;
-    const category = req.body.category;
     const description = req.body.description;
 
     const newProduct = new Products({
@@ -23,8 +21,6 @@ router.route('/add').post((req, res) => {
         title,
         price,
         image,
-        brand,
-        category,
         description,
     });
 

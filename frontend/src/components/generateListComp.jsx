@@ -23,6 +23,12 @@ async function generateText(minBudget, maxBudget, items) {
     } catch (error) {
         console.error(error);
     }
+
+    return(
+        <div>
+            <img src={Loading} alt="Loading" />
+        </div>
+    )
 }
 
 generateText();
