@@ -6,18 +6,23 @@ import { Table } from 'antd';
 const TicketList = ({ tickets, onTicketSelect }) => {
   const columns = [
     {
+      title: 'First Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
+    },
+    {
       title: 'Issue',
       dataIndex: 'issue',
       key: 'issue',
-      width: '70%',
-      render: (text, record) => <a onClick={() => onTicketSelect(record)}>{text}</a>,
+      width: '50%',
+      render: (text, record) => <a onClick={() => onTicketSelect(record._id)}>{text}</a>,
     },
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
       render: status => (
-        <span style={{ color: status === 'Open' ? 'red' : 'green' }}>{status}</span>
+        <span style={{ color: status === 'Pending' ? 'red' : 'green' }}>{status}</span>
       ),
     },
   ];

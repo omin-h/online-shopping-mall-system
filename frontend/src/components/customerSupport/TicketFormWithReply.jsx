@@ -1,47 +1,69 @@
 // TicketFormWithReply.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 
-const TicketFormWithReply = ({ onFinish }) => {
+const TicketFormWithReply = ({ ticketId, onFinish }) => {
   const [form] = Form.useForm();
+  const [ticketData, setTicketData] = useState(null);
+
+  useEffect(() => {
+    const fetchTicketData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5555/ticket/${ticketId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTicketData(data);
+        } else {
+          console.error('Failed to fetch ticket data');
+        }
+      } catch (error) {
+        console.error('Error fetching ticket data:', error);
+      }
+    };
+
+    fetchTicketData();
+  }, [ticketId]);
 
   const handleSubmit = values => {
-    onFinish(values);
+    onFinish(ticketId, values.reply);
     form.resetFields();
   };
+
+  if (!ticketData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Form form={form} layout="vertical" onFinish={handleSubmit}>
       <Form.Item
         name="firstName"
         label="First Name"
-        rules={[{ required: true, message: 'Please input your first name' }]}
+        initialValue={ticketData.firstName}
       >
-        <Input />
+        <Input disabled />
       </Form.Item>
       <Form.Item
         name="lastName"
         label="Last Name"
-        rules={[{ required: true, message: 'Please input your last name' }]}
+        initialValue={ticketData.lastName}
       >
-        <Input />
+        <Input disabled />
       </Form.Item>
       <Form.Item
         name="email"
         label="Email"
-        rules={[{ required: true, message: 'Please input your email' }]}
+        initialValue={ticketData.email}
       >
-        <Input type="email" />
+        <Input disabled />
       </Form.Item>
       <Form.Item
         name="issue"
         label="Issue"
-        rules={[{ required: true, message: 'Please describe the issue' }]}
+        initialValue={ticketData.issue}
       >
-        <Input.TextArea />
+        <Input.TextArea disabled />
       </Form.Item>
-      {/* Additional field for reply */}
       <Form.Item
         name="reply"
         label="Reply"

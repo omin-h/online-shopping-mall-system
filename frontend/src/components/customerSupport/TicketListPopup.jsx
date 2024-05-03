@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Table, Button, Space, Popconfirm, notification } from 'antd';
-import axios from 'axios';
-import TicketEditForm from './TicketEditForm'; // Import the TicketEditForm component
-
+import React, { useState, useEffect } from "react";
+import {
+  Modal,
+  Table,
+  Button,
+  Space,
+  Popconfirm,
+  notification,
+  Input,
+} from "antd";
+import axios from "axios";
+import TicketEditForm from "./TicketEditForm"; // Import the TicketEditForm component
 
 const TicketListPopup = ({ visible, onClose }) => {
   const [tickets, setTickets] = useState([]);
   const [editTicket, setEditTicket] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (visible) {
@@ -19,10 +27,10 @@ const TicketListPopup = ({ visible, onClose }) => {
       const response = await axios.get(`http://localhost:5555/ticket`);
       setTickets(response.data);
     } catch (error) {
-      console.error('Error fetching tickets:', error);
+      console.error("Error fetching tickets:", error);
       notification.error({
-        message: 'Error',
-        description: 'Failed to fetch tickets',
+        message: "Error",
+        description: "Failed to fetch tickets",
       });
     }
   };
@@ -32,14 +40,14 @@ const TicketListPopup = ({ visible, onClose }) => {
       await axios.delete(`http://localhost:5555/ticket/${ticketId}`);
       fetchTickets();
       notification.success({
-        message: 'Success',
-        description: 'Ticket deleted successfully',
+        message: "Success",
+        description: "Ticket deleted successfully",
       });
     } catch (error) {
-      console.error('Error deleting ticket:', error);
+      console.error("Error deleting ticket:", error);
       notification.error({
-        message: 'Error',
-        description: 'Failed to delete ticket',
+        message: "Error",
+        description: "Failed to delete ticket",
       });
     }
   };
@@ -53,47 +61,57 @@ const TicketListPopup = ({ visible, onClose }) => {
     setEditTicket(null);
   };
 
+  const handleSearch = (value) => {
+    setSearchText(value);
+  };
+
   const columns = [
     {
-      title: 'First Name',
-      dataIndex: 'firstName',
-      key: 'firstName',
+      title: "First Name",
+      dataIndex: "firstName",
+      key: "firstName",
     },
     {
-      title: 'Last Name',
-      dataIndex: 'lastName',
-      key: 'lastName',
+      title: "Last Name",
+      dataIndex: "lastName",
+      key: "lastName",
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: 'Issue',
-      dataIndex: 'issue',
-      key: 'issue',
+      title: "Issue",
+      dataIndex: "issue",
+      key: "issue",
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       render: (text, record) => (
         <Space size="middle">
           <Button type="primary" onClick={() => handleEdit(record)}>
             Edit
           </Button>
           <Popconfirm
-            title="Are you sure you want to delete this ticket?"
+            title="Are you sure you want to delete this issue?"
             onConfirm={() => handleDelete(record._id)}
             okText="Yes"
             cancelText="No"
           >
-            <Button type="danger">Delete</Button>
+            <Button type="danger"className="custom-delete-butt5541n" style={{ backgroundColor: 'rgb(139, 0, 0)', color: 'white' }} >Delete</Button>
           </Popconfirm>
         </Space>
       ),
     },
   ];
+
+  const filteredTickets = searchText
+    ? tickets.filter((ticket) =>
+        ticket.firstName.toLowerCase().includes(searchText.toLowerCase())
+      )
+    : tickets;
 
   return (
     <div>
@@ -104,7 +122,14 @@ const TicketListPopup = ({ visible, onClose }) => {
         footer={null}
         width={900}
       >
-        <Table columns={columns} dataSource={tickets} rowKey="_id" />
+ 
+        <Input.Search
+          placeholder="Search by first name"
+          onChange={(e) => handleSearch(e.target.value)}
+          value={searchText}
+          style={{ marginBottom: "8px", width: "600px" }}
+        />
+        <Table columns={columns} dataSource={filteredTickets} rowKey="_id" />
       </Modal>
       {editTicket && (
         <TicketEditForm

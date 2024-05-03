@@ -12,7 +12,7 @@ const { Content } = Layout;
 
 const AdminPage = () => {
   const [tickets, setTickets] = useState([]);
-  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [selectedTicketId, setSelectedTicketId] = useState(null);
   const [replyModalVisible, setReplyModalVisible] = useState(false);
 
   useEffect(() => {
@@ -33,12 +33,13 @@ const AdminPage = () => {
     fetchTickets();
   }, []);
 
-  const handleTicketSelect = ticket => {
-    setSelectedTicket(ticket);
+  const handleTicketSelect = ticketId => {
+    setSelectedTicketId(ticketId);
     setReplyModalVisible(true);
   };
 
-  const handleReply = (ticketKey, reply) => {
+  const handleReply = (ticketId, reply) => {
+    // You can add logic here to update the ticket status if needed
     setReplyModalVisible(false);
   };
 
@@ -64,13 +65,12 @@ const AdminPage = () => {
             onCancel={() => setReplyModalVisible(false)}
             footer={[
               <Button key="resolvedPrint" onClick={() => handlePrint('resolved')}>Print Resolved</Button>,
-              
-              <Button key="delete" type="primary" onClick={() => handleReply(selectedTicket.key, "Your reply here")}>
+              <Button key="delete" type="primary" onClick={() => handleReply(selectedTicketId, "Your reply here")}>
                 Delete
               </Button>,
             ]}
           >
-            <TicketFormWithReply onFinish={values => console.log("Form submitted with values:", values)} />
+            <TicketFormWithReply ticketId={selectedTicketId} onFinish={handleReply} />
           </Modal>
         </div>
       </Content>
