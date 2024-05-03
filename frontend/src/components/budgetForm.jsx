@@ -3,6 +3,7 @@ import "./budgetForm.css";
 import ai from '../assets/AI Logo.png';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const BudgetForm = () => {
 
@@ -14,7 +15,20 @@ const BudgetForm = () => {
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleClick = (minBudget, maxBudget, items) => {
-        navigate("/generate", { state: { minBudget, maxBudget, items } }); // Pass values as props when navigating
+       axios.post('http://localhost:5555/chatgpt', {
+            prompt: `Generate a shopping list for a budget of Rs.${minBudget} to Rs.${maxBudget} with the following items: ${items}`
+        }).then((response) => {
+            const shoppingList = response.data.completion;
+            console.log(shoppingList);
+            navigate('/shoppinglist', { state: { shoppingList } });
+        }).catch((error) => {
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                text: "An error occurred. Please try again later.",
+              });
+        });
+        
     };
 
     const handleItemsChange = (event) => {
