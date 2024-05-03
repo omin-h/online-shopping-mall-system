@@ -8,6 +8,11 @@
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
 }
+.item-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .item{
     height: 330px;
