@@ -9,15 +9,23 @@ const Shop = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const { name } = useParams();
 
-    const items = [
+    const shops = [
         {
-            id: 1,
-            name: 'Essential Backpack',
-            description: 'Color: Black',
-            price: 9500.00,
-            image: 'https://incarnage.com/cdn/shop/files/DSC00084.jpg?crop=center&height=300&v=1709712558&width=300'
-        }
+            id: 'adi',
+            name: 'Adidas',
+            items: [
+                {
+                    id: 'adi1',
+                    name: 'Essential Backpack',
+                    description: 'Color: Black',
+                    price: 9500.00,
+                    image: 'https://incarnage.com/cdn/shop/files/DSC00084.jpg?crop=center&height=300&v=1709712558&width=300'
+                },
+            ]
+        },
     ];
+
+    const shop = shops.find(shop => shop.id === name);
 
     const onHandleAddToCart = (item) => {
         let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
@@ -48,7 +56,7 @@ const Shop = () => {
                     <img src={`/src/assets/${name}.jpeg`} height={100} />
                     {/* <span style={{ paddingLeft: 20 }}>Carnage</span> */}
                 </p>
-                {items.map(item => <div className="item" key={item.id}>
+                {shop?.items?.map(item => <div className="item" key={item.id}>
                     <img src={item.image} />
                     <div className="item-info">
                         <div>{item.name}</div>
