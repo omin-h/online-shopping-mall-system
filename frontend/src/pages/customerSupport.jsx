@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { Layout, Breadcrumb, Input, Row, Col, Card, Space, Button, AutoComplete, Popover } from "antd";
+import {
+  Layout,
+  Breadcrumb,
+  Input,
+  Row,
+  Col,
+  Card,
+  Space,
+  Button,
+  AutoComplete,
+  Popover,
+  Modal,
+} from "antd";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import TicketForm from "../components/customerSupport/ticketForm";
-import SupportDetails from "../components/customerSupport/SupportDetails"; // Import the SupportDetails component
+import SupportDetails from "../components/customerSupport/SupportDetails";
+import TicketListPopup from "../components/customerSupport/TicketListPopup";
 
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -12,6 +25,8 @@ const { Content } = Layout;
 
 const CustomerPage = () => {
   const [tickets, setTickets] = useState([]);
+  const [showTicketForm, setShowTicketForm] = useState(false);
+  const [showTicketList, setShowTicketList] = useState(false);
 
   const onFinish = (values) => {
     const newTicket = {
@@ -20,44 +35,39 @@ const CustomerPage = () => {
       status: "Open",
     };
     setTickets([...tickets, newTicket]);
+    setShowTicketForm(false); // Close the ticket form popup after submission
   };
 
   const frequentlyAskedQuestions = [
-    "User Login",
-    "My Account",
-    "Security",
-    "E-commerce",
-    "FAQ",
-    "Customization",
+    "How do I reset my password?",
+    "How can I update my account information?",
+    "What should I do if I encounter a security issue?",
+    "How can I place an order?",
+    "How do I contact customer support?",
+    "Can I customize my account settings?",
   ];
 
   const handleSearch = (value) => {
     console.log("Searching for:", value);
   };
 
-  const handleIconClick = (topic) => {
-    console.log("Clicked on:", topic);
-    const topicIndex = frequentlyAskedQuestions.indexOf(topic);
-    if (topicIndex !== -1) {
-      const sectionId = `section-${topicIndex}`;
-      const sectionElement = document.getElementById(sectionId);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-      }
+  const scrollToSection = (sectionId) => {
+    const sectionElement = document.getElementById(sectionId);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
     }
   };
 
   const handleReportIssue = () => {
-    const ticketFormElement = document.getElementById("ticket-form");
-    ticketFormElement.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
+    setShowTicketForm(true); // Show the ticket form popup
+  };
+
+  const handleViewIssues = () => {
+    setShowTicketList(true); // Navigate to ViewIssuesPage
   };
 
   const options = frequentlyAskedQuestions.map((faq) => ({
@@ -75,11 +85,15 @@ const CustomerPage = () => {
       }}
     >
       <Header />
-      <Content style={{ padding: "0 50px", maxWidth: "800px", margin: "0 auto" }}>
-        <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>Support</Breadcrumb.Item>
+      <Content
+        style={{ padding: "0 50px", maxWidth: "800px", margin: "0 auto" }}
+      >
+        <Breadcrumb style={{ margin: "16px 0", color: "white" }}>
+          <Breadcrumb.Item>
+            <strong style={{ color: "white" }}>Customer Support</strong>
+          </Breadcrumb.Item>
         </Breadcrumb>
+
         <div className="site-layout-content">
           <Row gutter={[16, 16]} justify="center">
             <Col span={24}>
@@ -103,6 +117,13 @@ const CustomerPage = () => {
                 >
                   Report an Issue
                 </Button>
+                <Button
+                  type="primary"
+                  onClick={handleViewIssues}
+                  style={{ marginTop: "20px", marginLeft: "20px" }}
+                >
+                  View Issues
+                </Button>
               </div>
             </Col>
             <Col span={24} style={{ marginTop: "40px" }}>
@@ -110,41 +131,51 @@ const CustomerPage = () => {
                 <Space size={24}>
                   {[
                     {
-                      title: "User Login",
-                      icon: "https://cdn.iconscout.com/icon/free/png-256/free-gear-289-667857.png?f=webp",
-                    },
-                    {
-                      title: "My Account",
-                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028919.png",
-                    },
-                    {
-                      title: "Security",
-                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028910.png",
-                    },
-                    {
-                      title: "E-commerce",
-                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028923.png",
-                    },
-                    {
                       title: "FAQ",
                       icon: "https://cdn-icons-png.flaticon.com/128/1028/1028914.png",
                     },
                     {
+                      title: "User Login",
+                      icon: "https://cdn.iconscout.com/icon/free/png-256/free-gear-289-667857.png?f=webp",
+                      sectionId: "user-login",
+                    },
+                    {
+                      title: "My Account",
+                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028919.png",
+                      sectionId: "my-account",
+                    },
+                    {
+                      title: "Security",
+                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028910.png",
+                      sectionId: "security",
+                    },
+                    {
+                      title: "E-commerce",
+                      icon: "https://cdn-icons-png.flaticon.com/128/1028/1028923.png",
+                      sectionId: "e-commerce",
+                    },
+                    {
                       title: "Customization",
                       icon: "https://cdn-icons-png.flaticon.com/128/1028/1028932.png",
+                      sectionId: "customization",
                     },
                   ].map((item, index) => (
-                    <Popover key={index} content={item.title} title={null} trigger="hover">
+                    <Popover
+                      key={index}
+                      content={item.title}
+                      title={null}
+                      trigger="hover"
+                    >
                       <Card
                         hoverable
                         style={{
                           width: 120,
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          backgroundColor: "rgba(255, 255, 255, 0.05)",
                           transition: "background-color 0.3s, box-shadow 0.3s",
                           boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
                         }}
                         cover={<img alt={item.title} src={item.icon} />}
-                        onClick={() => handleIconClick(item.title)}
+                        onClick={() => scrollToSection(item.sectionId)}
                       />
                     </Popover>
                   ))}
@@ -153,23 +184,32 @@ const CustomerPage = () => {
             </Col>
           </Row>
           <Row justify="center" style={{ marginTop: "40px" }}>
-            <Col span={20} id="section-0">
-              <SupportDetails />
-            </Col>
-          </Row>
-          <Row justify="center" style={{ marginTop: "40px" }}>
-            <Col span={16}>
-              <div
-                className="ticket-form"
-                style={{ padding: "20px", borderRadius: "8px" }}
-              >
-                <TicketForm onFinish={onFinish} />
-              </div>
+            <Col span={20} id="user-login">
+              <SupportDetails scrollToSection={scrollToSection} />
             </Col>
           </Row>
         </div>
       </Content>
       <Footer />
+
+      {/* Ticket Form Popup */}
+      <Modal
+        title="Report an Issue"
+        visible={showTicketForm}
+        onCancel={() => setShowTicketForm(false)} // Close the ticket form popup when canceled
+        footer={null}
+      >
+        <div
+          className="ticket-form"
+          style={{ padding: "20px", borderRadius: "8px" }}
+        >
+          <TicketForm onFinish={onFinish} />
+        </div>
+      </Modal>
+      <TicketListPopup
+        visible={showTicketList}
+        onClose={() => setShowTicketList(false)}
+      />
     </div>
   );
 };
