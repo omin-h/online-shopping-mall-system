@@ -48,6 +48,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     margin-bottom: 30px;
     background: linear-gradient(#01022e, #ffffff);
+    min-height: 300px;
     /* display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif; */
@@ -90,6 +91,9 @@
 
 .align-middle {
     align-self: center;
+}
+.cart-item{
+    background-color: #ffffff87;
 }
 
 td {

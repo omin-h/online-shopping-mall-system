@@ -10,7 +10,6 @@ import './cart.css'
 function Cart() {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
-    const [messageApi, contextHolder] = message.useMessage();
     useEffect(() => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
         if (cartItems.length > 0) {
@@ -22,12 +21,13 @@ function Cart() {
 
     function clearCart() {
         localStorage.removeItem('cartItems');
+        window.dispatchEvent(new Event('cartItems'))
         setCart([]);
         setTotal(0);
-        messageApi.open({
+        message.open({
             type: 'success',
             content: 'Cart cleared successfully',
-          });
+        });
     }
 
     function removeItem(itemId) {
@@ -36,10 +36,11 @@ function Cart() {
         setCart(newCart);
         setTotal(total);
         localStorage.setItem('cartItems', JSON.stringify(newCart));
-        messageApi.open({
+        window.dispatchEvent(new Event('cartItems'))
+        message.open({
             type: 'success',
             content: 'Product removed from cart successfully',
-          });
+        });
     }
 
     return (
@@ -47,79 +48,83 @@ function Cart() {
             <Header />
             <div className="container-fluid">
                 <div className="page-title mb-5">Shopping Cart</div>
-                <div className="row">
-                    <div className="col-xl-8 px-5">
-                        <table className="table cart-table table-borderless">
-                            <thead >
-                                <tr>
-                                    <th scope='col'>Product</th>
-                                    <th scope='col'>Unit Price</th>
-                                    <th scope='col'>Quantity</th>
-                                    <th scope='col'>Subtotal</th>
-                                    <th scope='col'></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cart?.map((product) => {
-                                    return (
-                                        <tr className='p-5 align-middle' key={product.item.id}>
-                                            <td className='text-start'>
-                                                <div className="row">
-                                                    <div className="col-4">
-                                                        <img alt='product' src={product.item.image}></img>
+                {cart.length > 0 &&
+                    <div className="row">
+                        <div className="col-xl-8 px-5">
+                            <table className="table cart-table table-borderless">
+                                <thead >
+                                    <tr>
+                                        <th scope='col'>Product</th>
+                                        <th scope='col'>Unit Price</th>
+                                        <th scope='col'>Quantity</th>
+                                        <th scope='col'>Subtotal</th>
+                                        <th scope='col'></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cart?.map((product) => {
+                                        return (
+                                            <tr className='p-5 align-middle cart-item' key={product.item.id}>
+                                                <td className='text-start'>
+                                                    <div className="row">
+                                                        <div className="col-4">
+                                                            <img alt='product' src={product.item.image}></img>
+                                                        </div>
+                                                        <div className="col-8">
+                                                            <h4>{product.item.name}</h4>
+                                                            <p>{product.item.description}</p>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-8">
-                                                        <h4>{product.item.name}</h4>
-                                                        <p>{product.item.description}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p>LKR {product.item.price.toFixed(2)}</p>
-                                            </td>
-                                            <td>
-                                                <p>{product.quantity}</p>
-                                            </td>
-                                            <td>
-                                                <p>LKR {(product.item.price * product.quantity).toFixed(2)}</p>
-                                            </td>
-                                            <td>
-                                                <IconButton aria-label="delete" onClick={() => removeItem(product.item.id)}>
-                                                    <CancelIcon />
-                                                </IconButton>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
-                        <div className="row">
-                            <div className="col-6">
-                                <Link to='/shop/Carnage'>
-                                    <button className='mt-5 btn-fill'>
-                                        Continue Shopping
+                                                </td>
+                                                <td>
+                                                    <p>LKR {product.item.price.toFixed(2)}</p>
+                                                </td>
+                                                <td>
+                                                    <p>{product.quantity}</p>
+                                                </td>
+                                                <td>
+                                                    <p>LKR {(product.item.price * product.quantity).toFixed(2)}</p>
+                                                </td>
+                                                <td>
+                                                    <IconButton color='error' aria-label="delete" onClick={() => removeItem(product.item.id)}>
+                                                        <CancelIcon />
+                                                    </IconButton>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                            <div className="row">
+                                <div className="col-6">
+                                    <Link to='/shop/Carnage'>
+                                        <button className='mt-5 btn-fill'>
+                                            Continue Shopping
+                                        </button>
+                                    </Link>
+                                </div>
+                                <div className="col-6">
+                                    <button className='mt-5 btn-clear' onClick={() => clearCart(cart._id)} >
+                                        Clear Cart
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div className="col-xl-4 px-5">
+                            <div className="cart-card">
+                                <div className="title mb-5"> Cart Total </div>
+                                <p> Total amount </p>
+                                <h3> LKR {total.toFixed(2)} </h3>
+                                <Link to={`/checkout`} >
+                                    <button className='mt-5 btn-checkout'> Proceed to checkout </button>
                                 </Link>
                             </div>
-                            <div className="col-6">
-                                <button className='mt-5 btn-clear' onClick={() => clearCart(cart._id)} >
-                                    Clear Cart
-                                </button>
-                            </div>
                         </div>
-                    </div>
-                    <div className="col-xl-4 px-5">
-                        <div className="cart-card">
-                            <div className="title mb-5"> Cart Total </div>
-                            <p> Total amount </p>
-                            <h3> LKR {total.toFixed(2)} </h3>
-                            <Link to={`/checkout`} >
-                                <button className='mt-5 btn-checkout'> Proceed to checkout </button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
 
+                    </div>
+                }
             </div>
             <Footer />
         </div>

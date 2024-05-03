@@ -6,7 +6,7 @@ import Header from "../components/header";
 import './shop.css';
 
 const Shop = () => {
-    const [messageApi, contextHolder] = message.useMessage();
+    // const [messageApi, contextHolder] = message.useMessage();
     const { name } = useParams();
 
     const shops = [
@@ -41,8 +41,8 @@ const Shop = () => {
             cartItems = [{ item, quantity: 1 }];
         }
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-        messageApi.open({
+        window.dispatchEvent( new Event('cartItems') )
+        message.open({
             type: 'success',
             content: 'Product Added to Cart',
         });
