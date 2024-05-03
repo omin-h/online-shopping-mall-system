@@ -7,7 +7,13 @@ import Cart2 from '../assets/cart2.png';
 import Again from '../assets/again.png';
 import './shoppingListComp.css';
 
+import { useLocation } from 'react-router-dom';
+
 const ShoppingListComp = () => {
+    const location = useLocation(); // use useLocation hook to get location
+    const shoppingListData = location.state?.shoppingList; // access state from location    
+    console.log(shoppingListData);
+
     return (
         <div>
             
@@ -20,6 +26,7 @@ const ShoppingListComp = () => {
                         <p className="list-item1-store">
                             <p className="list-item1-title">
                             Emerald Polo T-Shirt
+                            {shoppingListData}
                             </p>
 
                             <p className="list-item1-shop">

@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import "./budgetForm.css";
 import ai from '../assets/AI Logo.png';
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 
 
 const BudgetForm = () => {
 
+    const navigate = useNavigate();
+
     const [minBudget, setMinBudget] = useState('');
     const [maxBudget, setMaxBudget] = useState('');
     const [items, setItems] = useState('');
     const [itemsCount, setItemsCount] = useState(0);
+
+
 
         async function callOpenAi() {
 
@@ -24,7 +29,7 @@ const BudgetForm = () => {
                                 - Item No: '03', Item Name: '1200ltr Water Bottle', Item Price: '750'
                                 - Item No: '04', Item Name: 'White Sneaker Shoe', Item Price: '8200'
                                 - Item No: '05', Item Name: 'Black Formal Shoe', Item Price: '6200'
-                                Generate a shopping list and display only the item numbers in an array called shoppingList for a budget between ${minBudget} to ${maxBudget} with the following items: ${items}. and response only should have shoppingList array`
+                                Generate a shopping list and display only the item numbers for a budget between ${minBudget} to ${maxBudget} with the following items: ${items}. and response only should have numbers`
                 }],
                 "max_tokens": 60,
                 "temperature": 0,
@@ -45,6 +50,8 @@ const BudgetForm = () => {
             return data.json();
         }).then((data) => {
             console.log(data);
+
+            navigate('/shoppingList', { state: { shoppingList: data.choices[0].message.content } });
         });
     }
 
