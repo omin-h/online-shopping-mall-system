@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const shopProductSchema = new mongoose.Schema({
-    productId: {
+    itemNo: {
         type: String,
         required: true
     },
@@ -25,11 +25,6 @@ const shopProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
-    shopName: {
-        type: String,
-        required: true
-    }
 
 });
 

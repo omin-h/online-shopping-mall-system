@@ -24,7 +24,7 @@ const BudgetForm = () => {
                 "messages": [{
                     "role": "system",
                     "content": `Prompt: Here are all the items available in our store:
-                                - Item No: '01', Item Name: 'Black Cap for men', Item Price: '1200'
+                                - Item No: '01', Item Name: 'tie pin for men', Item Price: '2200'
                                 - Item No: '02', Item Name: 'Black T-shirt for men', Item Price: '5200'
                                 - Item No: '03', Item Name: '1200ltr Water Bottle', Item Price: '750'
                                 - Item No: '04', Item Name: 'White Sneaker Shoe', Item Price: '8200'

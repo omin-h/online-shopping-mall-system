@@ -1,17 +1,17 @@
 import ShopProduct from '../models/shopProduct.js';
 
 
+
 const createShopProduct = async (req, res) => {
     try {
-        const { productId, productTitle, productPrice, productImage, productDescription, shopName } = req.body;
+        const { itemNo, productTitle, productPrice, productImage, productDescription} = req.body;
 
         const shopProduct = new ShopProduct({
-            productId,
+            itemNo,
             productTitle,
             productPrice,
             productImage,
-            productDescription,
-            shopName
+            productDescription
         });
 
         await shopProduct.save();
@@ -33,11 +33,12 @@ const getAllShopProducts = async (req, res) => {
     }
 };
 
-// Function to get a specific shop product by productId
-const getShopProductById = async (req, res) => {
+
+
+
+const getShopProductByItemNo = async (req, res) => {
     try {
-        const productId = req.params.productId;
-        const product = await ShopProduct.findOne({ productId: productId });
+        const product = await ShopProduct.findOne({ itemNo: req.params.itemNo });
         if (!product) {
             return res.status(404).json({ message: 'Product not found' });
         }
@@ -48,8 +49,11 @@ const getShopProductById = async (req, res) => {
     }
 };
 
+
+
 export default {
     createShopProduct,
     getAllShopProducts,
-    getShopProductById
+    getShopProductByItemNo
+  
 };
