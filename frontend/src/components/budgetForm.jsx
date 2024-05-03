@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./budgetForm.css";
 import ai from '../assets/AI Logo.png';
-import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import axios from 'axios';
+
+
 
 const BudgetForm = () => {
 
@@ -12,24 +12,41 @@ const BudgetForm = () => {
     const [items, setItems] = useState('');
     const [itemsCount, setItemsCount] = useState(0);
 
-    const navigate = useNavigate(); // Initialize useNavigate
+        async function callOpenAi() {
 
-    const handleClick = (minBudget, maxBudget, items) => {
-       axios.post('http://localhost:5555/chatgpt', {
-            prompt: `Generate a shopping list for a budget of Rs.${minBudget} to Rs.${maxBudget} with the following items: ${items}`
-        }).then((response) => {
-            const shoppingList = response.data.completion;
-            console.log(shoppingList);
-            navigate('/shoppinglist', { state: { shoppingList } });
-        }).catch((error) => {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                text: "An error occurred. Please try again later.",
-              });
+            const ApiBody = {
+                "model": "gpt-3.5-turbo",
+                "messages": [{
+                    "role": "system",
+                    "content": `Prompt: Here are all the items available in our store:
+                                - Item No: '01', Item Name: 'Black Cap for men', Item Price: '1200'
+                                - Item No: '02', Item Name: 'Black T-shirt for men', Item Price: '5200'
+                                - Item No: '03', Item Name: '1200ltr Water Bottle', Item Price: '750'
+                                - Item No: '04', Item Name: 'White Sneaker Shoe', Item Price: '8200'
+                                - Item No: '05', Item Name: 'Black Formal Shoe', Item Price: '6200'
+                                Generate a shopping list and display only the item numbers in an array called shoppingList for a budget between ${minBudget} to ${maxBudget} with the following items: ${items}. and response only should have shoppingList array`
+                }],
+                "max_tokens": 60,
+                "temperature": 0,
+                "top_p": 1.0,
+                "frequency_penalty": 0.0,
+                "presence_penalty": 0.0
+            };
+
+        await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${API_KEY}`,
+            },
+            body: JSON.stringify(ApiBody),
+
+        }).then((data) => {
+            return data.json();
+        }).then((data) => {
+            console.log(data);
         });
-        
-    };
+    }
 
     const handleItemsChange = (event) => {
         const inputItems = event.target.value;
@@ -37,7 +54,7 @@ const BudgetForm = () => {
         setItemsCount(inputItems.length); // Update character count
     };
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event, minBudget, maxBudget, items) => {
         event.preventDefault(); // Prevent default form submission behavior
 
         if (minBudget === '' || maxBudget === '' || items === '') {
@@ -75,14 +92,15 @@ const BudgetForm = () => {
             return;
         }
 
-        // Proceed with form submission or further actions
-        handleClick(minBudget, maxBudget, items);
+        callOpenAi();
     };
 
     return (
         <div className="budget-form-fill">
             <div className="budget-title">
                 <p>Find best shopping list for your budget with AI</p>
+
+                
             </div>
 
             <div className="budget-form">
