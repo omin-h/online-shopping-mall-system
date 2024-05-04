@@ -1,7 +1,7 @@
 // TicketFormWithReply.jsx
 
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 
 const TicketFormWithReply = ({ ticketId, onFinish }) => {
   const [form] = Form.useForm();
@@ -25,9 +25,26 @@ const TicketFormWithReply = ({ ticketId, onFinish }) => {
     fetchTicketData();
   }, [ticketId]);
 
-  const handleSubmit = values => {
-    onFinish(ticketId, values.reply);
-    form.resetFields();
+  const handleSubmit = async values => {
+    try {
+      const response = await fetch(`http://localhost:5555/ticket/${ticketId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ reply: values.reply, status: 'Resolved' }),
+      });
+      if (response.ok) {
+        message.success('Ticket updated successfully');
+        onFinish();
+      } else {
+        console.error('Failed to update ticket');
+        message.error('Failed to update ticket');
+      }
+    } catch (error) {
+      console.error('Error updating ticket:', error);
+      message.error('Error updating ticket');
+    }
   };
 
   if (!ticketData) {

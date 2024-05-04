@@ -10,10 +10,13 @@ import {
 } from "antd";
 import axios from "axios";
 import TicketEditForm from "./TicketEditForm"; // Import the TicketEditForm component
+import TicketDetailsPopup from "./TicketDetailsPopup";
 
 const TicketListPopup = ({ visible, onClose }) => {
   const [tickets, setTickets] = useState([]);
   const [editTicket, setEditTicket] = useState(null);
+  const [detailsPopupVisible, setDetailsPopupVisible] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState(null);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -65,6 +68,11 @@ const TicketListPopup = ({ visible, onClose }) => {
     setSearchText(value);
   };
 
+  const handleViewDetails = (ticket) => {
+    setSelectedTicket(ticket); // Set the selected ticket
+    setDetailsPopupVisible(true); // Set detailsPopupVisible to true to show the modal
+  };
+
   const columns = [
     {
       title: "First Name",
@@ -85,6 +93,9 @@ const TicketListPopup = ({ visible, onClose }) => {
       title: "Issue",
       dataIndex: "issue",
       key: "issue",
+      render: (text, record) => (
+        <a onClick={() => handleViewDetails(record)}>{text}</a>
+      ),
     },
     {
       title: "Action",
@@ -137,6 +148,13 @@ const TicketListPopup = ({ visible, onClose }) => {
           onClose={() => setEditTicket(null)}
           ticket={editTicket}
           onUpdate={handleUpdate}
+        />
+      )}
+      {detailsPopupVisible && selectedTicket &&(
+        <TicketDetailsPopup
+          visible={detailsPopupVisible}
+          onClose={() => setDetailsPopupVisible(false)}
+          ticket={selectedTicket}
         />
       )}
     </div>
