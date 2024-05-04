@@ -58,28 +58,28 @@ const TicketFormWithReply = ({ ticketId, onFinish }) => {
         label="First Name"
         initialValue={ticketData.firstName}
       >
-        <Input disabled />
+        <Input disabled style={{ background: '#f5f5f5', color: '#333' }} />
       </Form.Item>
       <Form.Item
         name="lastName"
         label="Last Name"
         initialValue={ticketData.lastName}
       >
-        <Input disabled />
+        <Input disabled style={{ background: '#f5f5f5', color: '#333' }} />
       </Form.Item>
       <Form.Item
         name="email"
         label="Email"
         initialValue={ticketData.email}
       >
-        <Input disabled />
+        <Input disabled style={{ background: '#f5f5f5', color: '#333' }} />
       </Form.Item>
       <Form.Item
         name="issue"
         label="Issue"
         initialValue={ticketData.issue}
       >
-        <Input.TextArea disabled />
+        <Input.TextArea disabled style={{ background: '#f5f5f5', color: '#333' }} />
       </Form.Item>
       <Form.Item
         name="reply"
@@ -87,7 +87,7 @@ const TicketFormWithReply = ({ ticketId, onFinish }) => {
       >
         <Input.TextArea />
       </Form.Item>
-      <Form.Item>
+      <Form.Item >
         <Button type="primary" htmlType="submit">
           Submit
         </Button>

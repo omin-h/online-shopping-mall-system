@@ -66,58 +66,58 @@ const AdminPage = () => {
         let yPos = 10;
   
         // Header
-        doc.setFontSize(14); // Set font size for header
-        doc.text('Customer Issues Report', 70, yPos); // Header title
-        doc.setDrawColor(0); // Set border color
-        doc.setLineWidth(0.5); // Set border line width
-        doc.line(10, yPos + 8, 200, yPos + 8); // Draw a line under the header
-        yPos += 20; // Increase yPos after the header
+        doc.setFontSize(14); 
+        doc.text('Customer Issues Report', 70, yPos); 
+        doc.setDrawColor(0); 
+        doc.setLineWidth(0.5);
+        doc.line(10, yPos + 8, 200, yPos + 8); 
+        yPos += 20; 
   
         // Table Header
         doc.setFont('helvetica', 'bold');
-        doc.setTextColor(255); // Set text color to white
-        doc.setFillColor(0, 51, 102); // Set fill color to dark blue
-        doc.rect(10, yPos, 190, 10, 'F'); // Draw a filled rectangle for header background
-        doc.setFontSize(10); // Set font size for table header
-        doc.text('First Name', 15, yPos + 8); // First Name
-        doc.text('Last Name', 40, yPos + 8); // Last Name
-        doc.text('Issue', 70, yPos + 8); // Issue
-        doc.text('Email', 110, yPos + 8); // Email
-        doc.text('Reply', 150, yPos + 8); // Reply
-        doc.text('Status', 180, yPos + 8); // Status
-        yPos += 1; // Reduce the space between table header and data
+        doc.setTextColor(255); 
+        doc.setFillColor(0, 51, 102); 
+        doc.rect(10, yPos, 190, 10, 'F'); 
+        doc.setFontSize(10); 
+        doc.text('First Name', 15, yPos + 8); 
+        doc.text('Last Name', 40, yPos + 8); 
+        doc.text('Issue', 70, yPos + 8); 
+        doc.text('Email', 110, yPos + 8); 
+        doc.text('Reply', 150, yPos + 8); 
+        doc.text('Status', 180, yPos + 8); 
+        yPos += 1; 
   
         // Data rows
         doc.setFont('helvetica', 'normal');
-        doc.setTextColor(0); // Set text color to black
-        doc.setFillColor(255); // Set fill color to white for alternating rows
+        doc.setTextColor(0); 
+        doc.setFillColor(255); 
         ticketsData.forEach((ticket, index) => {
           let longestTextLength = Math.max(ticket.email.length, ticket.issue.length, ticket.reply.length);
           let rowHeight = 10;
           if (longestTextLength > 30) {
-            rowHeight = 10; // Increase row height for long text
+            rowHeight = 10; 
           }
-          yPos += rowHeight; // Increment yPos by rowHeight
-          doc.setFillColor(index % 2 === 0 ? 240 : 255, 255, 255); // Set fill color for alternating rows
-          doc.rect(10, yPos, 190, rowHeight, 'F'); // Draw a filled rectangle for row background
-          doc.text(ticket.firstName, 15, yPos + 8); // First Name
-          doc.text(ticket.lastName, 40, yPos + 8); // Last Name
-          doc.text(ticket.issue, 70, yPos + 8, { maxWidth: 40 }); // Issue, limit width to 40mm
-          doc.text(ticket.email, 110, yPos + 8, { maxWidth: longestTextLength * 2 }); // Email, limit width based on text length
-          doc.text(ticket.reply, 150, yPos + 8, { maxWidth: 40 }); // Reply, limit width to 40mm
-          doc.text(ticket.status, 180, yPos + 8); // Status
+          yPos += rowHeight; 
+          doc.setFillColor(index % 2 === 0 ? 240 : 255, 255, 255);
+          doc.rect(10, yPos, 190, rowHeight, 'F'); 
+          doc.text(ticket.firstName, 15, yPos + 8); 
+          doc.text(ticket.lastName, 40, yPos + 8); 
+          doc.text(ticket.issue, 70, yPos + 8, { maxWidth: 40 });
+          doc.text(ticket.email, 110, yPos + 8, { maxWidth: longestTextLength * 2 }); 
+          doc.text(ticket.reply, 150, yPos + 8, { maxWidth: 40 });
+          doc.text(ticket.status, 180, yPos + 8); 
         });
   
         // Footer
-        doc.setLineWidth(0.5); // Set border line width for footer
-        doc.line(10, 287, 200, 287); // Draw a line above the footer bar
-        doc.setFontSize(8); // Set font size for footer
-        doc.setTextColor(100); // Set text color to dark gray
-        doc.text('© 2024 Galaxy City Online Shopping Mall', 100, 293, { align: 'center' }); // Footer text line 1
-        doc.text('All rights reserved', 100, 297, { align: 'center' }); // Footer text line 2
-        doc.text('Developed with ♥', 100, 301, { align: 'center' }); // Footer text line 3
+        doc.setLineWidth(0.5); 
+        doc.line(10, 287, 200, 287);
+        doc.setFontSize(8); 
+        doc.setTextColor(100); 
+        doc.text('© 2024 Galaxy City Online Shopping Mall', 100, 293, { align: 'center' });
+        doc.text('All rights reserved', 100, 297, { align: 'center' }); 
+        doc.text('Developed with ♥', 100, 301, { align: 'center' }); 
   
-        // Open PDF in new tab instead of auto downloading
+        
         const pdfDataUri = doc.output('datauristring');
         const newWindow = window.open();
         newWindow.document.write('<iframe src="' + pdfDataUri + '" frameborder="0" style="border: none; width: 100%; height: 100%;"></iframe>');
@@ -147,10 +147,7 @@ const AdminPage = () => {
             visible={replyModalVisible}
             onCancel={() => setReplyModalVisible(false)}
             footer={[
-              <Button key="resolvedPrint" onClick={handlePrint}>Print Resolved</Button>,
-              <Button key="delete" type="primary" onClick={() => handleReply()}>
-                Delete
-              </Button>,
+
             ]}
           >
             <TicketFormWithReply ticketId={selectedTicketId} onFinish={handleReply} />
