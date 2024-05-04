@@ -16,6 +16,7 @@ import Generate from "./pages/generate";
 
 import PrototypePage from "./pages/prototypepage";
 import BrandListPage from "./pages/brandlistpage";
+import Suggestionp from "./pages/sugesstionspage";
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
       {/* sachira's routes */}
       <Route path="/prototype" element={ <PrototypePage/>} />
       <Route path="/brandlist" element={ <BrandListPage/>} />
+      <Route path="/login" element={ <Suggestionp/>} />
   
       
     </Routes>
