@@ -7,27 +7,30 @@ import './header.css';
 import SearchBar from './searchBar';
 
 const Header = () => {
-    return (
-        <div className='headerBar'>
-          <Link to="/">
-            <img src={logo} alt="logo" className='logo'/>
-          </Link>
-          <ul className='nav'>
-            <li className='nav-li'><a href="/" className='linkText'>Home</a></li>
-            <li className='nav-li'><a href="/upcoming" className='linkText'>Upcoming Items</a></li>
-            <li className='nav-li'><a href="/customer_support" className='linkText'>Customer Support</a></li>
-            <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
-            <li className='nav-li'><a href="/contact Us" className='linkText'>Contact Us</a></li>
-          </ul>
-          <div className='searchBar'>
-            <SearchBar />         
-          </div>
-          <div className='user'>
-            <img src={user} alt="user" className='userIcon'/>
-            <a href="/customer_Support_Admin" className='linkText'>Login</a>
-          </div>
-          <img src={Cart} alt="Button Image" className="cart-logoo"></img>
-        </div>
+  return (
+    <div className='headerBar'>
+      <Link to="/">
+        <img src={logo} alt="logo" className='logo' />
+      </Link>
+      <ul className='nav'>
+        <li className='nav-li'><a href="/" className='linkText'>Home</a></li>
+        <li className='nav-li'><a href="/shops" className='linkText'>Shops</a></li>
+        <li className='nav-li'><a href="/brandlist" className='linkText'>Upcoming Items</a></li>
+        <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
+        <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
+        <li className='nav-li'><a href="/contact" className='linkText'>Contact Us</a></li>
+      </ul>
+      <div className='searchBar'>
+        <SearchBar />
+      </div>
+      <div className='user'>
+        <img src={user} alt="user" className='userIcon' />
+        <a href="/login" className='linkText'>Login</a>
+      </div>
+      <a href="/cart">
+        <img src={Cart} alt="Button Image" className="cart-logoo"></img>
+      </a>
+    </div>
   );
 };
 
