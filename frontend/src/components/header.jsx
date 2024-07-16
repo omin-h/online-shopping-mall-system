@@ -18,6 +18,7 @@ const Header = () => {
         <li className='nav-li'><a href="/brandlist" className='linkText'>Upcoming Items</a></li>
         <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
         <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
+        <li className='nav-li'><a href="/contact" className='linkText'>Contact Us</a></li>
       </ul>
       <div className='searchBar'>
         <SearchBar />
@@ -30,7 +31,6 @@ const Header = () => {
         <img src={Cart} alt="Button Image" className="cart-logoo"></img>
       </a>
     </div>
-
   );
 };
 
