@@ -3,7 +3,7 @@ import cors from "cors";
 import { PORT, MONGO_URI, connectToDatabase } from "./config.js";
 import shopProductRoute from "./routes/shopProductRoute.js";
 import ticketrouter from "./routes/ticketRoutes.js";
-
+import mongoose from "mongoose";
 
 const app = new express();
 
