@@ -10,9 +10,6 @@ import Budget from "./pages/budget";
 import ShoppingList from "./pages/shoppingList";
 import Generate from "./pages/generate";
 
-import PrototypePage from "./pages/prototypepage";
-import BrandListPage from "./pages/brandlistpage";
-
 
 const App = () => {
   return (
@@ -33,11 +30,6 @@ const App = () => {
       <Route path="/budget" element={<Budget />} />
       <Route path="/generate" element={<Generate />} />
       <Route path="/shoppingList" element={<ShoppingList />} />
-
-
-      {/* sachira's routes */}
-      <Route path="/prototype" element={ <PrototypePage/>} />
-      <Route path="/brandlist" element={ <BrandListPage/>} />
   
       
     </Routes>

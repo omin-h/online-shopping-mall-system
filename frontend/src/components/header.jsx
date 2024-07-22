@@ -16,7 +16,7 @@ const Header = () => {
         <li className='nav-li'><a href="/" className='linkText'>Home</a></li>
         <li className='nav-li'><a href="/shops" className='linkText'>Shops</a></li>
         <li className='nav-li'><a href="/brandlist" className='linkText'>Upcoming Items</a></li>
-        <li className='nav-li'><a href="/expenses" className='linkText'>Customer Support</a></li>
+        <li className='nav-li'><a href="/customer_support" className='linkText'>Customer Support</a></li>
         <li className='nav-li'><a href="/about" className='linkText'>About Us</a></li>
         <li className='nav-li'><a href="/contact" className='linkText'>Contact Us</a></li>
       </ul>
@@ -25,7 +25,7 @@ const Header = () => {
       </div>
       <div className='user'>
         <img src={user} alt="user" className='userIcon' />
-        <a href="/login" className='linkText'>Login</a>
+        <a href="/customer_Support_Admin" className='linkText'>Login</a>
       </div>
       <a href="/cart">
         <img src={Cart} alt="Button Image" className="cart-logoo"></img>
